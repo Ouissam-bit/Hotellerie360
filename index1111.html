@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HÔTELLERIE 360° | Formation Barman</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* === Reset & Root === */
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --primary:#043033;
+  --secondary:#ffffff;
+  --accent:#e85d04;
+  --text-color:#f8f1e7;
+  --transition:0.3s ease;
+}
+/* === Body & Background === */
+body{
+  font-family:'Montserrat',sans-serif;
+  color:var(--text-color);
+  scroll-behavior:smooth;
+  min-height:100vh;
+  position:relative;
+}
+body::before{
+  content:"";
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  background:url('https://cdn.instant.so/sites/OApV7uC5OuPOMPwO/assets/MYupnJYNX2pKyPD5/a7r08694.jpg?width=1280') no-repeat center center fixed;
+  background-size:cover;
+  z-index:-1;
+  filter:brightness(0.6);
+}
+/* === Navbar === */
+.navbar{
+  position:fixed; top:0; left:0; width:100%;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:15px 30px; background:var(--primary); z-index:1000;
+  transition:var(--transition);
+}
+.navbar.scrolled{background:rgba(4,48,51,0.95);}
+.logo{font-family:'Playfair Display',serif; font-size:24px; font-weight:700; color:var(--text-color);}
+.logo span{color:var(--secondary);}
+.nav-links{display:flex; gap:25px; list-style:none;}
+.nav-links li{position:relative;}
+.nav-links a{color:var(--text-color);text-decoration:none;font-weight:500;text-transform:uppercase;letter-spacing:1px;transition:var(--transition);}
+.nav-links a:hover{color:var(--secondary);}
+.nav-cta{background:var(--secondary); color:var(--primary); padding:10px 25px; border-radius:30px; text-transform:uppercase; font-weight:600; cursor:pointer; transition:var(--transition);}
+.nav-cta:hover{background:var(--accent); color:#fff;}
+.menu-toggle{display:none; flex-direction:column; gap:5px; cursor:pointer;}
+.menu-toggle span{width:25px; height:2px; background:var(--text-color); border-radius:2px;}
+/* === Language selector === */
+.language-selector{display:flex; align-items:center; gap:10px; cursor:pointer; position:relative;}
+.language-selector img{width:25px; height:16px; border-radius:2px;}
+.language-dropdown{display:none; position:absolute; top:30px; right:0; background:var(--primary); border-radius:10px; overflow:hidden; z-index:1001;}
+.language-dropdown div{padding:8px 12px; display:flex; align-items:center; gap:5px; cursor:pointer;}
+.language-dropdown div:hover{background:var(--secondary);}
+.language-selector.show .language-dropdown{display:block;}
+/* === Hero Section === */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:120px 20px;
+}
+.hero h1{font-family:'Playfair Display',serif;font-size:48px;font-weight:700;margin-bottom:20px;}
+.hero h1 span{color:var(--secondary);}
+.hero p{font-size:18px;color:var(--text-color);margin-bottom:30px;}
+.hero .btn-primary,.hero .btn-secondary{padding:15px 35px;border-radius:30px;font-weight:600;text-transform:uppercase;cursor:pointer;transition:var(--transition);text-decoration:none;}
+.hero .btn-primary{background:var(--secondary);color:var(--primary);}
+.hero .btn-primary:hover{background:var(--accent); color:#fff;}
+.hero .btn-secondary{border:2px solid var(--text-color);background:transparent;color:var(--text-color);}
+.hero .btn-secondary:hover{background:var(--text-color); color:var(--primary);}
+/* === Sections === */
+.section{padding:80px 20px;text-align:center;}
+.section h2{font-family:'Playfair Display',serif;font-size:36px;margin-bottom:15px;color:var(--secondary);}
+.section p{color:var(--text-color);line-height:1.8;max-width:800px;margin:0 auto 40px;}
+/* === Courses === */
+.courses-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; max-width:1200px; margin:0 auto;}
+.course-card{background:rgba(0,0,0,0.6); border-radius:20px; overflow:hidden; transition:0.3s; padding:20px;}
+.course-card:hover{transform:translateY(-5px); box-shadow:0 10px 30px rgba(0,0,0,0.3);}
+.course-title{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:10px;}
+.course-desc{font-size:14px;color:var(--text-color);line-height:1.6;}
+/* === Gallery === */
+.gallery-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:15px; max-width:1200px; margin:0 auto;}
+.gallery-grid img{width:100%; border-radius:15px; transition:0.3s;}
+.gallery-grid img:hover{transform:scale(1.05);}
+/* === Testimonials === */
+.testimonials-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; max-width:1200px;margin:0 auto;}
+.testimonial-card{background:rgba(0,0,0,0.6);border-radius:20px;padding:20px;transition:0.3s;}
+.testimonial-card:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,0,0,0.3);}
+.testimonial-card h3{font-family:'Playfair Display',serif;font-size:18px;margin-bottom:8px;}
+.testimonial-card p{font-size:14px;color:var(--text-color);line-height:1.6;}
+/* === Signup Section === */
+#signup{background:rgba(4,48,51,0.9); padding:80px 20px; text-align:center;}
+.signup-card{
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(10px);
+  padding:40px 20px;
+  border-radius:25px;
+  max-width:500px;
+  margin:0 auto;
+  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+.signup-card form{display:flex; flex-direction:column; gap:20px;}
+.input-group{display:flex; gap:15px;}
+.input-group input{flex:1; padding:12px 15px; border-radius:15px; border:none; outline:none; font-size:14px;}
+#signup input[type="email"]{padding:12px 15px; border-radius:15px; border:none; outline:none; font-size:14px;}
+.signup-card button{background:var(--secondary); color:var(--primary); padding:15px; border:none; border-radius:25px; font-weight:600; text-transform:uppercase; cursor:pointer; transition:0.3s;}
+.signup-card button:hover{background:var(--accent); color:#fff;}
+#signup-message{color:var(--secondary); margin-top:15px; font-size:14px;}
+@media(max-width:500px){.input-group{flex-direction:column;}}
+/* === Footer === */
+footer{background:var(--primary);color:var(--text-color);padding:30px 20px;text-align:center;font-size:14px;}
+/* === Responsive Navbar === */
+@media(max-width:768px){
+  .nav-links{display:none; flex-direction:column; background:var(--primary); position:absolute; top:60px; left:0; width:100%; padding:15px 0;}
+  .nav-links.show{display:flex;}
+  .menu-toggle{display:flex;}
+  .hero h1{font-size:32px;}
+  .hero p{font-size:16px;}
+}
+</style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">HÔTELLERIE<span>360°</span></div>
+  <nav>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#courses">Cours</a></li>
+      <li><a href="#gallery">Galerie</a></li>
+      <li><a href="#testimonials">Témoignages</a></li>
+      <li><a href="#signup">Inscrivez-vous</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="language-selector" id="lang-selector">
+    <img src="https://flagcdn.com/w20/ma.png" alt="Arabic" id="current-lang">
+    <div class="language-dropdown">
+      <div data-lang="en"><img src="https://flagcdn.com/w20/gb.png"> English</div>
+      <div data-lang="fr"><img src="https://flagcdn.com/w20/fr.png"> Français</div>
+      <div data-lang="ar"><img src="https://flagcdn.com/w20/ma.png"> العربية</div>
+    </div>
+  </div>
+  <button class="nav-cta">Inscrivez-vous</button>
+  <button class="menu-toggle"><span></span><span></span><span></span></button>
+</header>
+
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <h1>Devenez un <span>Barman Professionnel</span></h1>
+    <p>Maîtrisez l’art du cocktail et de l’hospitalité grâce à nos cours pratiques et interactifs.</p>
+    <a href="#courses" class="btn-primary">Voir les Cours</a>
+    <a href="#signup" class="btn-secondary">Inscrivez-vous</a>
+  </div>
+</section>
+
+<section class="section" id="courses">
+  <h2>Nos Cours</h2>
+  <p>Formation complète pour devenir un professionnel du bartending et de l'hospitalité.</p>
+  <div class="courses-grid">
+    <div class="course-card"><div class="course-title">Mixologie Classique</div><div class="course-desc">Techniques de cocktails traditionnels et modernes.</div></div>
+    <div class="course-card"><div class="course-title">Flair Bartending</div><div class="course-desc">Apprentissage du flair et show bartending pour impressionner les clients.</div></div>
+    <div class="course-card"><div class="course-title">Vins & Spiritueux</div><div class="course-desc">Connaissance approfondie des vins, whiskies et autres spiritueux.</div></div>
+    <div class="course-card"><div class="course-title">Service Client & Hospitality</div><div class="course-desc">Techniques d’accueil, relation client et gestion du bar.</div></div>
+    <div class="course-card"><div class="course-title">Cocktails Créatifs</div><div class="course-desc">Création et innovation de cocktails signature.</div></div>
+    <div class="course-card"><div class="course-title">Hygiène & Sécurité</div><div class="course-desc">Normes sanitaires et sécurité dans un environnement de bar.</div></div>
+  </div>
+</section>
+
+<section class="section" id="gallery">
+  <h2>Galerie</h2>
+  <p>Quelques images de nos formations, événements et ateliers.</p>
+  <div class="gallery-grid">
+    <img src="https://images.ctfassets.net/6zncp07wiqyq/FRdqSvWXCgUz3tBLDqyVk/4d57c8563bb697da8f7e292288c43b80/training_online-training-e-learning_bartender-skills-techniques_bar-skillstech_hero.jpg.jpg" alt="Formation en ligne">
+    <img src="https://barschool.b-cdn.net/wp-content/uploads/2024/06/EBS-student-making-a-cocktail.jpg" alt="Étudiant préparant un cocktail">
+    <img src="https://www.corsiperbarman.it/wp-content/uploads/2023/04/miglior-corso-barman_global-bartender.jpg" alt="Cours de barman">
+    <img src="https://wallpapers.com/images/hd/focused-bartender-pouring-drink-fxekm53t5hfjxuud.jpg" alt="Barman concentré">
+  </div>
+</section>
+
+<section class="section" id="testimonials">
+  <h2>Témoignages</h2>
+  <p>Nos étudiants partagent leur expérience.</p>
+  <div class="testimonials-grid">
+    <div class="testimonial-card"><h3>Youssef El Amrani</h3><p>Formation complète et très professionnelle, j'ai appris énormément !</p></div>
+    <div class="testimonial-card"><h3>Salma Benkirane</h3><p>Les formateurs sont excellents et la pratique est immersive.</p></div>
+    <div class="testimonial-card"><h3>Rachid Bensalem</h3><p>Les techniques apprises sont directement applicables dans un bar professionnel.</p></div>
+    <div class="testimonial-card"><h3>Imane Chafai</h3><p>J'ai adoré les ateliers créatifs et l'ambiance était super.</p></div>
+  </div>
+</section>
+
+<section class="section" id="signup">
+  <h2>Inscrivez-vous</h2>
+  <p>Rejoignez notre formation et recevez toutes les informations sur nos cours.</p>
+  <div class="signup-card">
+    <form id="signup-form">
+      <div class="input-group">
+        <input type="text" id="first-name" placeholder="Prénom" required>
+        <input type="text" id="last-name" placeholder="Nom" required>
+      </div>
+      <input type="email" id="email" placeholder="Email" required>
+      <button type="submit">S'inscrire</button>
+    </form>
+    <p id="signup-message"></p>
+  </div>
+</section>
+
+<footer id="contact">
+  <p>© 2025 HÔTELLERIE 360° – Tous droits réservés</p>
+  <p>Email: info@mixmasteracademy.com | Téléphone: +212 6 00 00 00 00</p>
+</footer>
+
+<script>
+// Hamburger toggle
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinks = document.getElementById('nav-links');
+menuToggle.addEventListener('click', ()=> navLinks.classList.toggle('show'));
+
+// Navbar scroll
+const navbar = document.querySelector('.navbar');
+window.addEventListener('scroll', () => { if(window.scrollY > 50) navbar.classList.add('scrolled'); else navbar.classList.remove('scrolled'); });
+
+// Language selector
+const langSelector = document.getElementById('lang-selector');
+const currentLang = document.getElementById('current-lang');
+langSelector.addEventListener('click', ()=> langSelector.classList.toggle('show'));
+
+// Signup form
+const signupForm = document.getElementById('signup-form');
+const signupMessage = document.getElementById('signup-message');
+signupForm.addEventListener('submit', e=>{
+  e.preventDefault();
+  const firstName = document.getElementById('first-name').value.trim();
+  const lastName = document.getElementById('last-name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  if(firstName && lastName && email){
+    signupMessage.textContent = `Merci ${firstName} ! Votre inscription a été enregistrée.`;
+    signupForm.reset();
+  } else{
+    signupMessage.textContent = "Veuillez remplir tous les champs correctement.";
+  }
+});
+</script>
+</body>
+</html>
